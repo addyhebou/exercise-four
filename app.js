@@ -5,6 +5,8 @@ const app = express();
 // Set the port
 const port = 4000;
 
+const port = process.env.PORT || 4000;
+
 // Create Base Route
 app.get('/', (req, res) => res.send('Exercise Four'));
 
