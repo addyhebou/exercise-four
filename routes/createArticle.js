@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Include Firebase
-const firebasse = requre("firebase");
+const firebase = require("firebase");
 // Initialize firestore database
 const db = firebase.firestore();
 // Reference to Collenctions

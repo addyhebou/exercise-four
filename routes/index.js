@@ -19,7 +19,7 @@ router.get("/", (req, res) =>{
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
         // Push document into array every time the query loops over existing articles
-        blogpostsArray.push(doc.data());
+            blogpostsArray.push(doc.data());
         });
         return res.send(blogpostsArray);
     })
@@ -31,22 +31,4 @@ router.get("/", (req, res) =>{
 
 
 
-router.get('/', (req, res) => {
-    blogposts
-        .doc(documentToGet)
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              console.log(`${doc.id} => ${doc.data()}`);
-              // Push document into array every time the query loops over existing articles
-              blogpostsArray.push(doc.data());
-            });
-          })
-          .catch(function(error){
-            console.log('Errors: ', error);
-          });
-        
-    res.send("")
-);
 
-module.exports = router;
