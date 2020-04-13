@@ -9,8 +9,7 @@ const firebase = require("firebase")
 const db = firebase.firestore();
 // Reference to Collenctions
 const blogposts = db.collection('blogposts');
-// Get Single Blog Post
-const documentToGet = "sample";
+router.get("/", (req, res) =>  res.send("Please include an ID"));
 
 router.get("/:id", (req, res) =>{ // :id allows you to get the id from the req's query
     const queryId = req.params.id;

@@ -7,13 +7,13 @@ const firebase = require("firebase")
 
 // Initialize firestore database
 const db = firebase.firestore();
-// Create empty Array
-const blogpostsArray = [];
 // Reference to Collenctions
 const blogposts = db.collection('blogposts');
 // Get Blog Posts
 
 router.get("/", (req, res) =>{
+    // Create empty Array
+    const blogpostsArray = [];
     blogPosts
     .get()
     .then((querySnapshot) => {
