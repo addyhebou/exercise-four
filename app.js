@@ -26,8 +26,11 @@ const db = firebase.firestore();
 
 // Create empty ARray
 const blogpostsArray = [];
+// Reference to Collenctions
+const blogposts = db.collection('blogposts');
+
 // Get Blog Posts
-const blogposts = db
+const allBlogPosts = db
   .collection('blogposts')
   .get()
   .then((querySnapshot) => {
@@ -41,11 +44,38 @@ const blogposts = db
     console.log('Errors: ', error);
   });
 
+// Get single blog post
+const documentToGet = 'sample-post';
+const singleBlogPost = blogposts
+  .doc(documentToGet)
+  .get()
+  .then(function (doc){
+    if (doc.exists) {
+      console.log("Document data:", doc.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+    })
+    .catch(function(error) {
+      console.log("Error getting document:", error);
+    });
+
+ 
+// Import Routes
+const indexRoute = require('./routes/index.js');
+const postsRoute = require('./routes/posts.js');
+const createRoute = require('./routes/createArticle.js');
 // Create Base Route
 // Send JSON array as response
-app.get('/', (req, res) => 
-    res.send(blogpostsArray)
-);
+// app.get('/', (req, res) => 
+//     res.send(blogpostsArray)
+// );
+
+// Create Different Routes
+app.use('/', indexRoute);
+app.use('/posts', postsRoute);
+app.use('/create', createRoute);
 
 // Set up route
 app.listen(port, () =>
